@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # ToolName   : PyPhisher
-# Author     : KasRoudra
+# Author     : King
 # Version    : 2.1
 # License    : MIT
 # Copyright  : KasRoudra (2021-2024)
