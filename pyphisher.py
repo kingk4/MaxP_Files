@@ -251,7 +251,7 @@ sites_dir = f"{home}/.websites"
 #sites_dir = "/home/king/Desktop/website/"
 print(sites_dir)
 templates_file = "/root/.websites/website/templates.json"
-tunneler_dir = f"{home}/.tunneler"
+tunneler_dir = f"{home}/.tunneler/"
 #tunneler_dir = "/home/king/Desktop/tunneler/"
 print(tunneler_dir)
 php_file = f"{tunneler_dir}/php.log"
